@@ -6,20 +6,34 @@ import Header from './src/components/Header';
 import { Provider, useDispatch } from 'react-redux';
 import store from './src/store/store';
 import { useTheme } from './src/hooks/useTheme';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
 import { useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SELECTED_THEME_KEY } from './src/config/constants';
 import { setColorScheme } from './src/store/actions/themeActions';
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      gcTime: 10 * 60 * 1000, // 10 minutes (renamed from cacheTime)
+      retry: 3,
+    },
+  },
+});
+
 function App() {
   return (
-    <Provider store={store}>
-      <SafeAreaProvider>
-        <NavigationContainer>
-          <AppContent />
-        </NavigationContainer>
-      </SafeAreaProvider>
-    </Provider>
+    <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
+        <SafeAreaProvider>
+          <NavigationContainer>
+            <AppContent />
+          </NavigationContainer>
+        </SafeAreaProvider>
+      </Provider>
+    </QueryClientProvider>
   );
 }
 
