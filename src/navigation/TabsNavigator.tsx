@@ -1,8 +1,8 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
+import { useTheme } from '../hooks/useTheme';
 import ExploreScreen from '../screens/ExploreScreen';
 import RepositoriesScreen from '../screens/RepositoriesScreen';
-import { useTheme } from '../hooks/useTheme';
 
 const TabsNavigator = () => {
   const Tab = createMaterialTopTabNavigator();
