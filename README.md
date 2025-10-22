@@ -72,3 +72,5 @@ yarn ios
 
 - Use the theme toggle button in the header to switch between dark and light modes
 - Your theme preference is automatically saved and restored on app restart
+
+  
